@@ -1,46 +1,46 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header>
-	<nav>
-		<h2><a href="/" transition:name="site-title">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/work">Work</HeaderLink>
-			<HeaderLink href="/writing">Writing</HeaderLink>
-		</div>
-	</nav>
+    <nav>
+        <h2><a href="/">{SITE_TITLE}</a></h2>
+        <div class="internal-links">
+            <HeaderLink href="/">Home</HeaderLink>
+            <HeaderLink href="/work">Work</HeaderLink>
+            <HeaderLink href="/writing">Writing</HeaderLink>
+        </div>
+    </nav>
 </header>
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		border-bottom: var(--border-thick) solid rgb(var(--black));
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+    header {
+        margin: 0;
+        padding: 0 1em;
+        background: white;
+        border-bottom: var(--border-thick) solid rgb(var(--black));
+    }
+    h2 {
+        margin: 0;
+        font-size: 1em;
+    }
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.75em;
-		color: rgb(var(--black));
-		border-bottom: var(--border-thick) solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		border-bottom-color: rgb(var(--black));
-	}
+    h2 a,
+    h2 a.active {
+        text-decoration: none;
+    }
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    nav a {
+        padding: 1em 0.75em;
+        color: rgb(var(--black));
+        border-bottom: var(--border-thick) solid transparent;
+        text-decoration: none;
+    }
+    nav a.active {
+        border-bottom-color: rgb(var(--black));
+    }
 </style>

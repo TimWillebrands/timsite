@@ -1,23 +1,32 @@
 ---
-import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { SITE_TITLE } from '../../consts';
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { SITE_TITLE } from "../../consts";
 
-const items = (await getCollection('work')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const items = (await getCollection("work")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
-<Base title={`${SITE_TITLE} — Work`} description={`Case studies by ${SITE_TITLE}`}>
-	<section>
-		<h1 transition:name="title">Work</h1>
-		<ul style="list-style:none; padding:0; margin:1em 0; display:grid; gap:1em;">
-			{items.map((it) => (
-				<li style="border: var(--border-thick) solid rgb(var(--black)); padding:1em;">
-					<a href={`/work/${it.id}/`}>{it.data.title}</a>
-					<p style="margin:0.5em 0 0 0; color: rgb(var(--gray));">{it.data.summary}</p>
-				</li>
-			))}
-		</ul>
-	</section>
+<Base
+    title={`${SITE_TITLE} — Work`}
+    description={`Case studies by ${SITE_TITLE}`}
+>
+    <section>
+        <h1>Work</h1>
+        <ul
+            style="list-style:none; padding:0; margin:1em 0; display:grid; gap:1em;"
+        >
+            {
+                items.map((it) => (
+                    <li style="border: var(--border-thick) solid rgb(var(--black)); padding:1em;">
+                        <a href={`/work/${it.id}/`}>{it.data.title}</a>
+                        <p style="margin:0.5em 0 0 0; color: rgb(var(--gray));">
+                            {it.data.summary}
+                        </p>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
 </Base>
-
-
