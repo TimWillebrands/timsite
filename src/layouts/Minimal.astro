@@ -1,11 +1,10 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import { ClientRouter, ViewTransitions } from 'astro:transitions';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 interface Props {
-	title?: string;
-	description?: string;
+    title?: string;
+    description?: string;
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
@@ -13,13 +12,10 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<ClientRouter />
-		<slot />
-		<ViewTransitions />
-	</body>
+    <head>
+        <BaseHead title={title} description={description} />
+    </head>
+    <body>
+        <slot />
+    </body>
 </html>
-

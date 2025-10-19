@@ -1,11 +1,11 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import { ClientRouter, ViewTransitions } from 'astro:transitions';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { ClientRouter } from "astro:transitions";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 interface Props {
-	title?: string;
-	description?: string;
+    title?: string;
+    description?: string;
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
@@ -13,44 +13,40 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<ClientRouter />
-		<nav class="minimal-nav">
-			<a href="/" transition:name="site-title">← Tim Willebrands</a>
-		</nav>
-		<main transition:animate="fade">
-			<slot />
-		</main>
-		<ViewTransitions />
-	</body>
+    <head>
+        <BaseHead title={title} description={description} />
+    </head>
+    <body>
+        <nav class="minimal-nav">
+            <a href="/" transition:name="site-title">← Tim Willebrands</a>
+        </nav>
+        <main transition:animate="fade">
+            <slot />
+        </main>
+    </body>
 </html>
 
 <style>
-	.minimal-nav {
-		padding: 2em 2em 0 2em;
-		max-width: 1200px;
-		margin: 0 auto;
-	}
-	
-	.minimal-nav a {
-		color: rgb(var(--black));
-		text-decoration: none;
-		font-weight: 500;
-		font-size: 1.1em;
-	}
-	
-	.minimal-nav a:hover {
-		text-decoration: underline;
-	}
-	
-	@media (max-width: 720px) {
-		.minimal-nav {
-			padding: 1.5em 1.5em 0 1.5em;
-		}
-	}
+    .minimal-nav {
+        padding: 2em 2em 0 2em;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .minimal-nav a {
+        color: rgb(var(--black));
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    .minimal-nav a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 720px) {
+        .minimal-nav {
+            padding: 1.5em 1.5em 0 1.5em;
+        }
+    }
 </style>
-
-
