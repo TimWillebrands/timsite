@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Base title={`${SITE_TITLE} — Writing`} description={`Writing by ${SITE_TITLE}`}>
+	<section>
+		<h1 transition:name="title">Writing</h1>
+		<ul style="list-style:none; padding:0; margin:1em 0; display:grid; gap:1em;">
+			{posts.map((post) => (
+				<li style="border: var(--border-thick) solid rgb(var(--black)); padding:1em;">
+					<a href={`/writing/${post.id}/`}>{post.data.title}</a>
+					<p style="margin:0.5em 0 0 0; color: rgb(var(--gray));">
+						{post.data.description}
+					</p>
+				</li>
+			))}
+		</ul>
+	</section>
+</Base>
+
+

@@ -16,4 +16,20 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+// Work collection for case studies
+const work = defineCollection({
+    loader: glob({ base: './src/content/work', pattern: '**/*.{md,mdx}' }),
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            summary: z.string(),
+            pubDate: z.coerce.date(),
+            heroImage: image().optional(),
+            problem: z.string().optional(),
+            role: z.string().optional(),
+            solution: z.string().optional(),
+            impact: z.string().optional(),
+        }),
+});
+
+export const collections = { blog, work };
