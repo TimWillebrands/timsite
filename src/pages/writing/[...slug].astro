@@ -13,10 +13,14 @@ const { Content } = await render(post);
 
 <Base title={post.data.title} description={post.data.description}>
     <article>
-        <h1>{post.data.title}</h1>
-        <hr />
-        <div class="prose">
-            <Content />
+        <div class="article-header">
+            <h1>{post.data.title}</h1>
+            <p class="article-meta">{post.data.description}</p>
         </div>
+        <hr />
+        <section class="prose">
+            <Content />
+        </section>
     </article>
 </Base>
+

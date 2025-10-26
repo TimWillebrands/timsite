@@ -14,19 +14,18 @@ const posts = (await getCollection("blog")).sort(
 >
     <section>
         <h1>Writing</h1>
-        <ul
-            style="list-style:none; padding:0; margin:1em 0; display:grid; gap:1em;"
-        >
+        <ul class="card-grid">
             {
                 posts.map((post) => (
-                    <li style="border: var(--border-thick) solid rgb(var(--black)); padding:1em;">
-                        <a href={`/writing/${post.id}/`}>{post.data.title}</a>
-                        <p style="margin:0.5em 0 0 0; color: rgb(var(--gray));">
-                            {post.data.description}
-                        </p>
+                    <li class="card">
+                        <h2>
+                            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                        </h2>
+                        <p>{post.data.description}</p>
                     </li>
                 ))
             }
         </ul>
     </section>
 </Base>
+

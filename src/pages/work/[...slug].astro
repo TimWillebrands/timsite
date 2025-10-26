@@ -14,13 +14,14 @@ const { Content } = await render(work);
 
 <Base title={work.data.title} description={work.data.summary}>
     <article>
-        <h1>{work.data.title}</h1>
-        <p style="color: rgb(var(--gray)); margin-top:0.5em;">
-            {work.data.summary}
-        </p>
+        <div class="article-header">
+            <h1>{work.data.title}</h1>
+            <p class="article-meta">{work.data.summary}</p>
+        </div>
         <hr />
         <section class="prose">
             <Content />
         </section>
     </article>
 </Base>
+

@@ -115,6 +115,82 @@ p {
 .prose p {
     margin-bottom: 2em;
 }
+
+.prose h2,
+.prose h3,
+.prose h4 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+}
+
+.prose h2:first-child,
+.prose h3:first-child,
+.prose h4:first-child {
+    margin-top: 0;
+}
+
+.prose ul,
+.prose ol {
+    margin-bottom: 2em;
+    padding-left: 1.5em;
+}
+
+.prose li {
+    margin-bottom: 0.5em;
+}
+
+.prose blockquote {
+    margin: 2em 0;
+}
+
+.prose hr {
+    margin: 2em 0;
+}
+
+.prose strong {
+    font-weight: 600;
+}
+
+.card-grid {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0;
+    display: grid;
+    gap: 1.5em;
+}
+
+.card {
+    border: var(--border-thick) solid rgb(var(--black));
+    border-radius: var(--border-radius);
+    padding: 1.5em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 rgb(var(--black));
+}
+
+.card h2 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.6em;
+}
+
+.card p {
+    margin: 0;
+    color: rgb(var(--gray));
+    line-height: 1.6;
+}
+
+.article-header {
+    margin-bottom: 2em;
+}
+
+.article-meta {
+    color: rgb(var(--gray));
+    margin-top: 0.5em;
+    font-size: 0.95em;
+}
 textarea {
     width: 100%;
     font-size: 16px;

@@ -14,19 +14,18 @@ const items = (await getCollection("work")).sort(
 >
     <section>
         <h1>Work</h1>
-        <ul
-            style="list-style:none; padding:0; margin:1em 0; display:grid; gap:1em;"
-        >
+        <ul class="card-grid">
             {
                 items.map((it) => (
-                    <li style="border: var(--border-thick) solid rgb(var(--black)); padding:1em;">
-                        <a href={`/work/${it.id}/`}>{it.data.title}</a>
-                        <p style="margin:0.5em 0 0 0; color: rgb(var(--gray));">
-                            {it.data.summary}
-                        </p>
+                    <li class="card">
+                        <h2>
+                            <a href={`/work/${it.id}/`}>{it.data.title}</a>
+                        </h2>
+                        <p>{it.data.summary}</p>
                     </li>
                 ))
             }
         </ul>
     </section>
 </Base>
+
