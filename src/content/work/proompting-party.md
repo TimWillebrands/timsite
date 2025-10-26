@@ -9,7 +9,7 @@ image:
 tags: ["proompting.party", "AI", "LLM", "Agentic", "System Design", "Engineering", "Culture", "GraphDB"]
 ---
 
-The first thing you notice about [`proompting.party`](https://proompting.party) is the aesthetic: a loving, pixel-perfect homage to the Windows XP era. It’s nostalgic, quirky, and fun. But beneath the retro UI lies a deeply ambitious engineering challenge: what would it take to build an LLM persona that can actually remember, learn, and evolve a persistent identity?
+The first thing you notice about [`proompting.party`](https://proompting.party) is the aesthetic: a loving homage to the Windows XP era. Nostalgic, quirky, and fun. But beneath the retro UI lies a ambitious engineering challenge: what would it take to build an LLM persona that can actually remember, learn, and evolve a persistent identity?
 
 This is not just another chat wrapper. It's an experiment in engineering a persistent digital psyche.
 
