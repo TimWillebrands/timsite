@@ -4,11 +4,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import Background from "../components/Background.astro";
 
 const ctaClasses =
-    "inline-block border-3 border-black rounded-xl py-[1em] px-[2.5em] text-center font-bold text-[1.3rem] text-black no-underline transition-all duration-200 hover:bg-black hover:text-white";
+    "inline-block border-2 border-black rounded-xl py-4 px-10 text-center font-bold text-xl text-black no-underline transition-all duration-200";
 const featuredLinkClasses =
     "block text-black no-underline transition-all duration-150 hover:opacity-60 group";
 const socialLinkClasses =
-    "text-black font-semibold text-[1.2rem] underline decoration-3 underline-offset-4 hover:decoration-[5px] transition-all duration-200";
+    "text-black font-semibold text-xl underline decoration-2 underline-offset-4 hover:decoration-4 transition-all duration-200";
 ---
 
 <Minimal title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -17,7 +17,7 @@ const socialLinkClasses =
     >
         <!-- Main Focus: Brand & About -->
         <div
-            class="mb-12 text-center border-3 border-black rounded-xl p-10 md:p-12 bg-white/40 backdrop-blur-sm"
+            class="mb-12 text-center border-2 border-black rounded-xl p-10 md:p-12 bg-white/40 backdrop-blur-sm"
         >
             <header class="mb-10">
                 <h1
@@ -30,9 +30,7 @@ const socialLinkClasses =
                 <h2 class="mb-3 text-xl leading-1 font-semibold md:text-lg">
                     Software Craftsman & Technical Leader
                 </h2>
-                <p
-                    class="mx-auto max-w-[38rem] text-[1.35rem] leading-[1.65] font-medium"
-                >
+                <p class="mx-auto max-w-xl text-xl leading-relaxed font-medium">
                     I'm a builder at heart, driven by the quiet joy of taking a
                     complex, messy problem and distilling it down to a clean,
                     maintainable solution. I do my best work with a high degree
@@ -69,7 +67,7 @@ const socialLinkClasses =
                     </svg>
                     Email
                 </a>
-                <span class="text-gray-400 text-[1.5rem]">•</span>
+                <span class="text-gray-400 text-2xl">•</span>
                 <a
                     href="https://www.linkedin.com/in/tim-willebrands-191b12a2"
                     class={socialLinkClasses}
@@ -156,7 +154,7 @@ const socialLinkClasses =
             <ul class="flex list-none flex-col gap-3 p-0">
                 <li>
                     <a href="/work/auxin" class={featuredLinkClasses}>
-                        <div class="text-[1.1rem] font-bold">
+                        <div class="text-lg font-bold">
                             Auxin <span class="font-normal opacity-60"
                                 >→ Taming a Sprawling Data Ecosystem with a
                                 Federated GraphQL Gateway</span
@@ -169,7 +167,7 @@ const socialLinkClasses =
                         href="/work/proompting-party"
                         class={featuredLinkClasses}
                     >
-                        <div class="text-[1.1rem] font-bold">
+                        <div class="text-lg font-bold">
                             Proompting.party <span
                                 class="font-normal opacity-60"
                                 >→ Digital Psyches with Memory & Culture. In a
