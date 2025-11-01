@@ -9,11 +9,16 @@ image:
 tags: ["Auxin", "Platform Engineering", "Architecture", "Microservices", ".NET", "IoT", "Lead Developer"]
 ---
 
-Auxin is a secure, central platform where greenhouse data and day‑to‑day workflows come together. It pulls in internal and external cultivation data, AI models, and third‑party apps to produce cultivation‑specific advice. It also turns that advice into action by steering hardware like drones and spray rigs through an operating system layer. For growers this means earlier risk detection, better decisions, and lower costs.
+> **🚧 Notice 🚧** 
+> 
+> Heya 👋 I appreciate you reading this page, _I mean I'm writing it for that purpose_. But I have to caution you, my dearest reader, that it is very much a _work-in-progess_. 
+
+
+[Auxin](https://royalbrinkman.com/auxin) is a secure, central platform where greenhouse data and day‑to‑day workflows come together. It pulls in internal and external cultivation data, AI models, and third‑party apps to produce cultivation‑specific advice. It also turns that advice into action by steering hardware like drones and spray rigs through an operating system layer. For growers this means earlier risk detection, better decisions, and lower costs.
 
 ## My role
 
-I was the architect and lead developer. I set the platform direction, chose the key patterns, and led the implementation across teams. The job was to balance product goals (security, multi‑tenancy, cohesive UX) with engineering goals (autonomy, scalability, evolvability).
+I was the architect and lead developer. I set the platform direction, chose the key patterns, and led the implementation. The job was to balance product goals (security, multi‑tenancy, cohesive UX) with engineering goals (autonomy, scalability, evolvability).
 
 ---
 
@@ -21,20 +26,19 @@ I was the architect and lead developer. I set the platform direction, chose the 
 
 ## Phase 1: Independent monoliths on a shared platform
 
-Before Auxin was pitched, I built an in‑house platform that could host modern React apps while safely embedding pieces of the legacy system. When the client asked for a central hub for horticulture (open to third‑party apps), that work became our blueprint.
+Before Auxin was pitched, I rebuilt an in‑house platform that could host modern React apps while safely embedding pieces of the legacy system it replaced. When the client asked for a central hub for horticulture (open to third‑party apps), that mode of thinking became my blueprint when building Auxin.
 
-- Every app = one service + its own database + its own webapp
-- No shared mutable data. Isolation by default
-- The shared platform provides authentication, multi‑tenancy, navigation, and style cohesion
-- Apps stay independently deployable and own their domain end to end
+Every feature belongs to a single domain which is build using a single _service_ which owns their own _database_ and serves its own _webapp_ to present the feature to the users.
+This way there can be **no** shared mutable data. Isolation by default and thus (or so I hoped) [no spooky action in the distance](https://en.wikipedia.org/wiki/Action_at_a_distance_%28computer_programming%29).
+The shared platform provides authentication, multi‑tenancy, navigation, and style cohesion. Apps stay independently deployable, own their domain end to end and can be as sinple or complex as needed without impacting other parts of the platform.
 
-This was not microservices for their own sake. These were independent monoliths, presented through one platform. It gave us speed and autonomy without early distributed complexity.
+This was not microservices in the traditional sense. These were independent monoliths, presented through one platform. It gave us speed and autonomy without most of the distributed complexity.
 
 Read more: [Blueprinting Auxin: Independent Monoliths on a Shared Platform](/writing/independent-monoliths-platform)
 
 ## Phase 2: Event sourcing to share data without coupling
 
-As the number of apps grew, cross‑domain data became necessary. I pushed back on service‑to‑service calls because they create tight coupling. Talking with peers led us to event sourcing: store immutable domain events in append‑only streams (we used EventStoreDB at the time).
+As the number of apps grew, cross‑domain data became necessary. Reading up on microservice horror-stories I decided against service‑to‑service calls and prevent any tight coupling. Talking with peers led us to event sourcing: store immutable domain events in append‑only streams (we used EventStoreDB at the time).
 
 - A shared event log is the primary source of truth
 - Services project events into their own materialized views for fast queries
