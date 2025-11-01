@@ -1,5 +1,5 @@
 ---
-title: Automating a 10,000‑Item E‑Commerce Migration
+title: Manufacturing System for large Greenhouse
 summary: Robust automation for a large catalog migration with repeatable, verifiable steps.
 pubDate: 2025-01-03
 ---

@@ -1,52 +1,62 @@
 ---
-title: 'Taming a Sprawling Data Ecosystem with a Federated GraphQL Gateway'
-pubDate: 2025-10-26 # Or whenever you publish
-summary: 'A case study on how we used a federated GraphQL gateway with ChilliCream Hot Chocolate Fusion to solve the API sprawl and complexity of the multi-tenant Auxin data platform.'
+title: 'Auxin: Taming a Sprawling Horticulture Data Ecosystem'
+pubDate: 2025-10-26
+summary: 'Reflections on architecting and leading Auxin for 5 years. Building a unified, secure platform for growers that connects data, AI, and operational apps.'
 author: 'Tim Willebrands'
 image:
     url: 'https://royalbrinkman.com/content/files/webshop-nl/overig/data%20management.jpg'
     alt: 'Image of a person using Auxin on a laptop in a greenhouse.'
-tags: ["Auxin", "GraphQL", "System Architecture", "Microservices", ".NET", "ChilliCream", "IoT"]
+tags: ["Auxin", "Platform Engineering", "Architecture", "Microservices", ".NET", "IoT", "Lead Developer"]
 ---
 
-The Auxin platform was born from a complex problem: how do you unify a sprawling, ever-growing ecosystem of disconnected devices and services into a single, cohesive data platform that users love? Each new sensor, camera, or data source we integrated came with its own backend service, its own API, and its own domain logic.
+Auxin is a secure, central platform where greenhouse data and day‑to‑day workflows come together. It pulls in internal and external cultivation data, AI models, and third‑party apps to produce cultivation‑specific advice. It also turns that advice into action by steering hardware like drones and spray rigs through an operating system layer. For growers this means earlier risk detection, better decisions, and lower costs.
 
-Early on, I realized that without a clear architectural strategy, we were headed for disaster. We would drown in a sea of bespoke APIs, our frontend would become a brittle mess of data-fetching logic, and every new feature would require complex, cross-team coordination.
+## My role
 
-We needed a system that could embrace this complexity while providing a single, simple, and powerful interface to the outside world. The solution was a Federated GraphQL Gateway, and as you said, it turned out to be an absolutely fantastic choice.
+I was the architect and lead developer. I set the platform direction, chose the key patterns, and led the implementation across teams. The job was to balance product goals (security, multi‑tenancy, cohesive UX) with engineering goals (autonomy, scalability, evolvability).
 
-### The Problem: The Inevitable Tangle of Microservices
+---
 
-As our domain expanded, we faced a classic set of scaling challenges:
+# Technical history: three phases that shaped Auxin
 
--   **API Sprawl:** Each microservice had its own REST endpoint. The frontend team was constantly learning new APIs and the backend teams were constantly writing boilerplate controllers.
--   **Tight Coupling:** If a frontend view needed data from three different services, it had to make three different calls and know where they were located. If one of those services changed its data model, the frontend would break.
--   **Duplicated Logic:** Services often needed to reference small pieces of data from each other, leading to duplicated data models and complex inter-service communication.
--   **Loss of Team Autonomy:** A simple change could cascade through multiple systems, requiring extensive coordination and slowing everyone down.
+## Phase 1: Independent monoliths on a shared platform
 
-We needed a central point of contact that didn't become a monolithic bottleneck.
+Before Auxin was pitched, I built an in‑house platform that could host modern React apps while safely embedding pieces of the legacy system. When the client asked for a central hub for horticulture (open to third‑party apps), that work became our blueprint.
 
-### The Solution: A Federated Gateway with Hot Chocolate Fusion
+- Every app = one service + its own database + its own webapp
+- No shared mutable data. Isolation by default
+- The shared platform provides authentication, multi‑tenancy, navigation, and style cohesion
+- Apps stay independently deployable and own their domain end to end
 
-Instead of a traditional API gateway that just proxies requests, we opted for a federated GraphQL architecture using the .NET library [ChilliCream Hot Chocolate Fusion](https://chillicream.com/docs/fusion/v14).
+This was not microservices for their own sake. These were independent monoliths, presented through one platform. It gave us speed and autonomy without early distributed complexity.
 
-This approach gave us a "smart" gateway that acts as a central switchboard for our entire data graph. Here’s how it works:
+Read more: [Blueprinting Auxin: Independent Monoliths on a Shared Platform](/writing/independent-monoliths-platform)
 
-1.  **Each Microservice is a GraphQL Server:** Every backend service (e.g., `SensorDataService`, `GreenhouseLayoutService`, `AnalyticsService`) exposes its own, independent GraphQL schema. They are complete, self-contained applications that own their specific domain.
-2.  **The Fusion Gateway Composes the Schemas:** Our gateway service does one simple, powerful thing: it polls all the downstream services, collects their individual schemas, and composes them into a single, unified super-schema. It knows which service is responsible for which part of the data graph.
-3.  **The Frontend Makes a Single Query:** The frontend (and any other client) now only talks to one endpoint: the gateway. It can ask for sensor data, layout information, and analytics all in a single, declarative GraphQL query.
-4.  **The Gateway Fetches and Joins:** The Fusion gateway intelligently plans and executes the query. It calls the relevant microservices in parallel, fetches the required data, and stitches it all together into a single response.
+## Phase 2: Event sourcing to share data without coupling
 
-> The most powerful decision we made was to **keep data-joining logic out of the backend.** We didn't create complex dependencies between our microservices. Instead, we empowered the frontend. By simply exposing the right IDs, the frontend could construct the query it needed, effectively "joining" the data from different domains at the point of consumption.
+As the number of apps grew, cross‑domain data became necessary. I pushed back on service‑to‑service calls because they create tight coupling. Talking with peers led us to event sourcing: store immutable domain events in append‑only streams (we used EventStoreDB at the time).
 
-### The Impact: Managed Autonomy and Velocity
+- A shared event log is the primary source of truth
+- Services project events into their own materialized views for fast queries
+- Duplicate storage is fine. Consistency comes from a common event source
+- Services subscribe to events they care about instead of calling each other
 
-Calling this choice "fantastic" isn't an exaggeration. The impact on our development process was immediate and profound:
+This gave us loose coupling at the data layer and a complete audit trail. The learning curve around event modeling and streaming was worth it for the clarity and resilience.
 
--   **Radical Team Autonomy:** Backend teams could develop, deploy, and scale their services completely independently. As long as their schema was available to the gateway, their new features would magically appear in the unified API without any central coordination.
--   **Dramatically Simplified Frontend:** The frontend team's productivity skyrocketed. They no longer had to orchestrate multiple API calls. They could simply declare the data they needed for a given view, and the gateway would handle the rest.
--   **Future-Proof by Design:** Adding a new data source or an entirely new business domain was no longer a massive architectural undertaking. We could spin up a new microservice, expose its schema, and the gateway would seamlessly integrate it into the platform.
--   **A Joy to Work With:** It created a truly developer-friendly experience. The API was self-documenting, strongly typed, and gave clients the exact data they asked for—no more, no less.
+Read more: [Decoupling Data Domains at Auxin with Event Sourcing](/writing/event-sourcing-at-auxin)
 
-This architecture wasn't just a technical solution; it was a cultural one. It allowed us to scale our platform and our team in a clean, decoupled way, giving us the velocity we needed to win in a complex market. It was a perfect example of choosing the right abstraction to manage complexity, and it's a pattern I would use again in a heartbeat.
+## Phase 3: A federated GraphQL gateway for a unified API
 
+As frontends matured, single apps needed data from multiple domains. We introduced a federated GraphQL gateway to compose service schemas into one graph. Clients send a single declarative query. The gateway plans, fetches in parallel, and stitches results.
+
+- One endpoint for all client data needs
+- Strongly typed, self‑documenting API with solid DX
+- Teams keep autonomy while the frontend gets much simpler
+
+This is when Auxin became what it is today: a place where future‑oriented growers can explore diverse data in a cohesive way, alongside specialized apps that go deeper, all on one platform.
+
+Read more: [Case Study: Taming API Sprawl with a Federated GraphQL Gateway](/writing/graphql-gateway-case-study)
+
+---
+
+Auxin blends a secure platform, domain know‑how, and data integration to move from data to value. It supports growers, product specialists, and partners with insights and with the tooling to act on them in one experience.
