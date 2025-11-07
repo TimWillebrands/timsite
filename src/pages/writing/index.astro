@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { SITE_TITLE } from "../../consts";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("writing")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -19,13 +19,14 @@ const posts = (await getCollection("blog")).sort(
                 posts.map((post) => (
                     <li class="card">
                         <h2>
-                            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                            <a href={`/writing/${post.id}/`}>
+                                {post.data.title}
+                            </a>
                         </h2>
-                        <p>{post.data.description}</p>
+                        <p>{post.data.summary}</p>
                     </li>
                 ))
             }
         </ul>
     </section>
 </Base>
-
