@@ -10,6 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://timwillebrands.nl',
   integrations: [mdx(), sitemap()],
+  prefetch: true,
 
   vite: {
     plugins: [tailwindcss()],
