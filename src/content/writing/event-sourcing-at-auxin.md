@@ -1,7 +1,7 @@
 ---
 title: 'Decoupling Data Domains at Auxin with Event Sourcing'
 pubDate: 2025-11-05
-summary: 'How we used event modeling and event sourcing to create a loosely coupled, highly scalable data architecture for the Auxin IoT platform.'
+summary: 'How we used event modeling and event sourcing to create a loosely coupled, highly scalable data architecture for the Auxin data hub.'
 author: 'Tim Willebrands'
 image:
     url: '/assets/blog-placeholder-2.jpg'
