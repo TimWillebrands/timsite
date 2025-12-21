@@ -1,5 +1,5 @@
 ---
-title: '001-proompting_party-programming-model-and-data-persistence'
+title: 'Proompting.party foundation (adr)'
 pubDate: 2025-12-21
 summary: 'Proompting.Party - Or why I started hacking with Cloudflare Workers'
 author: 'Tim Willebrands'
