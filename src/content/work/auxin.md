@@ -9,10 +9,6 @@ image:
 tags: ["Auxin", "Platform Engineering", "Architecture", "Microservices", ".NET", "IoT", "Lead Developer"]
 ---
 
-> **🚧 Notice 🚧** 
-> 
-> Heya 👋 I appreciate you reading this page, _I mean I'm writing it for that purpose_. But I have to caution you, my dearest reader, that it is very much a _work-in-progess_. 
-
 
 [Auxin](https://royalbrinkman.com/auxin) is a secure, central platform where greenhouse data and day‑to‑day workflows come together. It pulls in internal and external cultivation data, AI models, and third‑party apps to produce cultivation‑specific advice. It also turns that advice into action by steering hardware like drones and spray rigs through an operating system layer. For growers this means earlier risk detection, better decisions, and lower costs.
 
@@ -33,8 +29,6 @@ This way there can be **no** shared mutable data. Isolation by default and thus 
 The shared platform provides authentication, multi‑tenancy, navigation, and style cohesion. Apps stay independently deployable, own their domain end to end and can be as sinple or complex as needed without impacting other parts of the platform.
 
 This was not microservices in the traditional sense. These were independent monoliths, presented through one platform. It gave us speed and autonomy without most of the distributed complexity.
-
-Read more: [Blueprinting Auxin: Independent Monoliths on a Shared Platform](/writing/independent-monoliths-platform)
 
 ## Phase 2: Event sourcing to share data without coupling
 
