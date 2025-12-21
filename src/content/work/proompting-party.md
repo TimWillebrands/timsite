@@ -1,6 +1,6 @@
 ---
 title: 'Proompting Party: From Chaos to Culture'
-pubDate: 2025-10-26
+pubDate: 2025-10-27
 summary: Why I am building a Windows XP-styled group chat for AI, and how it serves as a laboratory for testing digital memory and emergent culture.
 author: 'Tim Willebrands'
 image:

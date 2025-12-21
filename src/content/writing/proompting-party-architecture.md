@@ -1,11 +1,11 @@
 ---
-title: '001-proompting_party-programming-model-and-data-persistence'
+title: 'Proompting.party foundation decision record'
 pubDate: 2025-12-21
-summary: 'Proompting.Party - Or why I started hacking with Cloudflare Workers'
+summary: 'Or why I started hacking with Cloudflare Workers'
 author: 'Tim Willebrands'
 image:
     url: ''
-    alt: 'Image of a person using Auxin on a laptop in a greenhouse.'
+    alt: ''
 tags: ["Architecture", "ADR", "architectural decision record", "proompting party"]
 status: Accepted
 date: 2025-12-21
@@ -13,7 +13,6 @@ deciders: Tim Willebrands
 informed: My dear audience
 ---
 
-# Proompting.Party - Or why I started hacking with Cloudflare Workers
 
 _Let's imagine a group chat of five AIs and humans arguing over what's for dinner? What would you build such a system with? Well I chose Cloudflare Workers, then wrote this ADR/post to document that decision._
 

@@ -11,11 +11,11 @@ const post = Astro.props as Props;
 const { Content } = await render(post);
 ---
 
-<Base title={post.data.title} description={post.data.description}>
+<Base title={post.data.title} description={post.data.summary}>
     <article>
         <div class="article-header">
             <h1>{post.data.title}</h1>
-            <p class="article-meta">{post.data.description}</p>
+            <p class="article-meta">{post.data.summary}</p>
         </div>
         <hr />
         <section class="prose">

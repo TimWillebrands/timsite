@@ -5,7 +5,7 @@ summary: 'A thought on why familiarity of code is less important than simplicity
 author: 'Tim Willebrands'
 image:
     url: ''
-    alt: 'Image of a person using Auxin on a laptop in a greenhouse.'
+    alt: ''
 tags: ["Architecture", "Complexity", "Standardization"]
 ---
 

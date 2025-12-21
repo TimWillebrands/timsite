@@ -65,7 +65,7 @@ body {
     line-height: 1.7;
 }
 main {
-    width: 760px;
+    width: 1024px;
     max-width: calc(100% - 2em);
     margin: auto;
     padding: 3em 1em;
@@ -112,8 +112,8 @@ a:focus-visible {
 p {
     margin-bottom: 1em;
 }
-.prose p {
-    margin-bottom: 2em;
+.prose {
+    margin-top: 1em;
 }
 
 .prose h2,
@@ -163,7 +163,9 @@ p {
     border: var(--border-thick) solid rgb(var(--black));
     border-radius: var(--border-radius);
     padding: 1.5em;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -223,7 +225,7 @@ blockquote {
     border-left: var(--border-thick) solid rgb(var(--black));
     padding: 0 0 0 20px;
     margin: 0px;
-    font-size: 1.2em;
+    font-size: 0.9em;
     border-radius: var(--border-radius);
 }
 hr {

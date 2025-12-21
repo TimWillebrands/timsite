@@ -1,12 +1,12 @@
 ---
 title: 'Auxin: Taming a Sprawling Horticulture Data Ecosystem'
 pubDate: 2025-10-26
-summary: 'Reflections on architecting and leading Auxin for 5 years. Building a unified, secure platform for growers that connects data, AI, and operational apps.'
+summary: 'Reflections on architecting and leading Auxin for 5 years. Building a unified, secure data-hub for growers that connects data, AI, and operational apps.'
 author: 'Tim Willebrands'
 image:
     url: 'https://royalbrinkman.com/content/files/webshop-nl/overig/data%20management.jpg'
     alt: 'Image of a person using Auxin on a laptop in a greenhouse.'
-tags: ["Auxin", "Platform Engineering", "Architecture", "Microservices", ".NET", "IoT", "Lead Developer"]
+tags: ["Auxin", "Platform Engineering", "Architecture", "Microservices", ".NET", "Data Platform", "Lead Developer"]
 ---
 
 
