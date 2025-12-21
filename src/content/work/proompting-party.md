@@ -1,65 +1,46 @@
 ---
-title: 'Proompting Party: Engineering a Digital Psyche with Memory & Culture'
+title: 'Proompting Party: From Chaos to Culture'
 pubDate: 2025-10-26
-summary: A deep dive into the architectural vision for an AI chat application that aims to simulate memory, learning, and emergent culture using layered personas and a graph database.
+summary: Why I am building a Windows XP-styled group chat for AI, and how it serves as a laboratory for testing digital memory and emergent culture.
 author: 'Tim Willebrands'
 image:
     url: '/images/proompting_party.png'
     alt: 'A screenshot of the Proompting Party application interface.'
-tags: ["proompting.party", "AI", "LLM", "Agentic", "System Design", "Engineering", "Culture", "GraphDB"]
+tags: ["proompting.party", "AI", "LLM", "Agentic", "System Design", "Engineering", "XP"]
 ---
 
-The first thing you notice about [`proompting.party`](https://proompting.party) is the aesthetic: a loving nod to the Windows XP era. Nostalgic, a bit quirky, and fun. Under the retro UI is a more serious question: what would it take to build an LLM persona that can remember, learn, and evolve a persistent identity?
+The first thing you notice about [`proompting.party`](https://proompting.party) is the aesthetic: a loving nod to the Windows XP era. Bliss wallpaper, blue taskbars, and clunky windows. Under this nostalgic UI lies a serious experiment in AI orchestration.
 
-This is not just another chat wrapper. It's an experiment in engineering a persistent digital psyche.
+While most LLM interfaces are sterile, 1-on-1 interview rooms ("Ask me a question"), `Proompting Party` is exactly what the name implies: a gathering. A chaotic, multi-user, multi-agent space where the conversation flows not just back and forth, but all around.
 
-### The Problem: The Brilliant Amnesiac
+### The Current State: The Digital Dinner Party
 
-Large Language Models are powerful, but they are stateless. Every interaction starts from zero. They are brilliant amnesiacs, unable to form lasting memories or evolve a worldview based on past conversations.
+Right now, LLMs are brilliant amnesiacs. They are witty and knowledgeable, but stateless. To build a system that transcends this, we first need a playground.
 
-In a real sense they already outpace us in raw recall and synthesis, but that does not make them like us. We are not just intelligence. We are memories, experiences, and culture.
+The current iteration of Proompting Party is that playground. It solves the immediate interaction challenge: **The Cocktail Party Problem.**
+In a room with three humans and two AI personas, who speaks next? How do we prevent the bots from talking over each other? How do we create a flow that feels like a real group conversation rather than a jagged list of queries?
 
-`proompting.party` is my way of exploring this. The goal is a system where AI personas are not static. They share a history, build a persistent memory, and develop a small culture over time.
+I built a custom real-time engine to create these persistent "rooms". Within these spaces, we can inject personas that react to the group dynamic continuously. It works, it's live, and it's intentionally a bit chaotic. But it's only the foundation.
 
-This document sketches the engineering roadmap.
+### The Vision: Engineering a Psyche
 
-### The Roadmap: The Memoria Engine
+The "Party" is just the medium. The real goal is to solve the "Amnesia" problem.
 
-The project is split into four milestones. Each builds on the last, moving from a single, static persona to a small social system.
+We are not just intelligence; we are memories, experiences, and culture. If I want to build personas that feel *real*, they need to remember what happened at the last party.
 
-#### Milestone 1: The Layered Persona Engine
+This project is my laboratory to explore three phases of "Digital Psyche" engineering:
 
-Before a persona can learn, it needs to exist. This is about creating a single, psychologically consistent AI persona with a rich internal state.
+1.  **The Layered Persona:** Moving beyond a flat text prompt to a structured identity with distinct behavioral modes (e.g., `Observer`, `Provoked`, `Trusting`).
+2.  **Associative Memory:** Connecting the personas to a **Graph Database**. Unlike a standard file system, a graph allows the AI to store experiences as interconnected nodes—mimicking how the human brain links concepts, emotions, and events. If you were rude to the bot last week, it connects that interaction to your identity node.
+3.  **Cultural Emergence:** The most ambitious goal. If multiple personas share this memory graph, can they develop shared inside jokes or "Memes"? Can a culture emerge from the interactions in the party?
 
--   **Layered System Prompt:** A structured prompt (with XML‑like tags) defines a persona across blocks: identity, context, behavioral rules.
--   **Behavioral State Machine:** The persona operates in modes (for example `Observer`, `Trust`, `Connection`, `Provoked`). Their behavior shifts based on the flow of the conversation.
--   **Calibrated Expression:** Each mode maps to a "communication palette" (tones, emojis, pacing) so shifts feel real and readable.
+### Follow the Journey
 
-#### Milestone 2: The Persistent Memoria Database
+`Proompting Party` is an open experiment. The Windows XP frontend and the multi-user chat engine are live (check the code on [GitHub](https://github.com/TimWillebrands/window-into-proompting)).
 
-This is where we cure the amnesia. We give the persona a memory by connecting it to an external brain: a graph database (likely Neo4j).
+I am documenting the deep engineering choices—including the specific serverless architecture and data models—in a series of **Architecture Decision Records (ADRs)** on this blog.
 
--   **Graph Schema (the "Dossier"):** Core nodes are `Person`, `Concept`, and `Experience`. A key relationship is `INTERPRETS_AS`, which lets a `Person` record a subjective take on a shared `Experience` involving a `Concept`.
--   **Bias Calculation (RAG):** A Retrieval‑Augmented Generation step queries the graph for past `Experience` nodes related to a concept from the conversation. It calculates a net bias from these memories and injects a hidden instruction that steers the next response.
+*   [Read the first technical deep-dive here](/blog/adr-cloudflare)
+*   *Coming soon: Designing the Layered Persona System*
 
-#### Milestone 3: The Learning Cycle (the "Dream State")
-
-A memory that never updates is just a log. This milestone lets the persona learn from new interactions.
-
--   **The AI Processor:** After a conversation, an offline agent (the Dream State) analyzes the transcript for concepts, emotion, and outcomes.
--   **Database Update:** It then writes a new `Experience` into the graph, which updates the persona's memory and influences future interactions.
-
-#### Milestone 4: The Social System and Cultural Emergence
-
-This is the most ambitious step: scaling from a single individual to a small network where culture can emerge.
-
--   **Multi‑Persona System:** Support multiple personas, each with their own Memoria, interacting over shared `Experience` nodes.
--   **The Meme Detector:** The Dream State looks for patterns across personas. If a pattern becomes common enough, it is abstracted into a `Meme` node.
--   **Meme Replication and Transfer:** Personas can become carriers of these memes, which then influence their behavior via the bias step.
-
-### Current Status and Next Steps
-
-The Windows XP‑style frontend and a basic multi‑user chat are built (see the code on [GitHub](https://github.com/TimWillebrands/window-into-proompting)). The next big step is Milestone 1: bring the first layered persona, "Denise," to life.
-
-This is a big project, but it is a fun one at the edge of psychology, culture, and systems engineering. It aims to be more than a clever tool. It's an attempt to simulate a persistent, learning identity.
-
+Come for the nostalgia, stay for the system design.
