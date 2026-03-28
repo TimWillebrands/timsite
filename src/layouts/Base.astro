@@ -1,6 +1,8 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 interface Props {
     title?: string;
@@ -16,42 +18,10 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
         <BaseHead title={title} description={description} />
     </head>
     <body>
-        <nav class="minimal-nav">
-            <a href="/"
-                ><h1
-                    transition:name="title"
-                    transition:animate="slide"
-                    class="!text-2xl"
-                >
-                    ← Tim Willebrands
-                </h1></a
-            >
-        </nav>
+        <Header />
         <main>
             <slot />
         </main>
+        <Footer />
     </body>
 </html>
-
-<style>
-    .minimal-nav {
-        padding: 2em 2em 0 2em;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .minimal-nav a {
-        color: rgb(var(--black));
-        text-decoration: none;
-    }
-
-    .minimal-nav a:hover {
-        text-decoration: underline;
-    }
-
-    @media (max-width: 720px) {
-        .minimal-nav {
-            padding: 1.5em 1.5em 0 1.5em;
-        }
-    }
-</style>

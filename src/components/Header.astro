@@ -17,8 +17,13 @@ import HeaderLink from "./HeaderLink.astro";
     header {
         margin: 0;
         padding: 0 1em;
-        background: white;
-        border-bottom: var(--border-thick) solid rgb(var(--black));
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
     h2 {
         margin: 0;
@@ -33,14 +38,22 @@ import HeaderLink from "./HeaderLink.astro";
         display: flex;
         align-items: center;
         justify-content: space-between;
+        max-width: 1024px;
+        margin: 0 auto;
     }
     nav a {
         padding: 1em 0.75em;
-        color: rgb(var(--black));
-        border-bottom: var(--border-thick) solid transparent;
+        color: var(--ink);
+        border-bottom: 2px solid transparent;
         text-decoration: none;
+        transition: border-color var(--transition), opacity var(--transition);
+        opacity: 0.7;
+    }
+    nav a:hover {
+        opacity: 1;
     }
     nav a.active {
-        border-bottom-color: rgb(var(--black));
+        border-bottom-color: var(--ink);
+        opacity: 1;
     }
 </style>

@@ -4,13 +4,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import Background from "../components/Background.astro";
 import { getCollection } from "astro:content";
 
-const ctaClasses =
-    "inline-block border-2 border-black rounded-xl py-4 px-10 text-center font-bold text-xl text-black no-underline transition-all duration-200";
-const featuredLinkClasses =
-    "block text-black no-underline transition-all duration-150 hover:opacity-60 group";
-const socialLinkClasses =
-    "text-black font-semibold text-xl underline decoration-2 underline-offset-4 hover:decoration-4 transition-all duration-200";
-
 const allWork = (await getCollection("work")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -34,22 +27,20 @@ const featuredWriting = [
     <div
         class="mx-auto flex flex-col min-h-screen max-w-[48rem] justify-center px-6 py-16 md:px-8"
     >
-        <!-- Main Focus: Brand & About -->
-        <div
-            class="mb-12 text-center border-2 border-black rounded-xl p-10 md:p-12 bg-white/40 backdrop-blur-sm"
-        >
+        <!-- Hero -->
+        <div class="hero mb-16 text-center p-10 md:p-14">
             <header class="mb-10">
                 <h1
                     transition:name="title"
                     transition:animate="slide"
-                    class="mb-8 text-7xl leading-1 font-bold md:text-5xl"
+                    class="hero-title mb-6 text-7xl leading-[1.05] font-bold md:text-5xl"
                 >
                     Tim Willebrands
                 </h1>
-                <h3 class="mb-3 text-2xl leading-1 font-semibold md:text-lg">
+                <p class="hero-role mb-6">
                     Software Craftsman & Technical Leader
-                </h3>
-                <p class="mx-auto max-w-xl text-xl leading-relaxed font-medium">
+                </p>
+                <p class="hero-bio mx-auto max-w-xl">
                     I'm a builder at heart, driven by the quiet joy of taking a
                     complex, messy problem and distilling it down to a clean,
                     maintainable solution. I do my best work with a high degree
@@ -66,15 +57,14 @@ const featuredWriting = [
             </header>
 
             <!-- Social Links -->
-            <div class="mb-10 flex flex-wrap justify-center gap-5 items-center">
+            <div class="social-row mb-10">
                 <a
                     href="mailto:mail@timwillebrands.nl?subject=Let%27s%20build%20something%20together%21&body=Hi%20Tim%2C%0A%0AI%20love%20your%20approach%20to%20building%20systems%20and%20crafting%20things.%20I%27m%20reaching%20out%20because..."
-                    class={socialLinkClasses}
+                    class="social-link"
                 >
                     <svg
-                        width="20"
-                        height="20"
-                        class="inline-block w-5 h-5 mr-2 -mt-1"
+                        width="18"
+                        height="18"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -88,17 +78,15 @@ const featuredWriting = [
                     </svg>
                     Email
                 </a>
-                <span class="text-gray-400 text-2xl">•</span>
                 <a
                     href="https://www.linkedin.com/in/tim-willebrands-191b12a2"
-                    class={socialLinkClasses}
+                    class="social-link"
                     target="_blank"
                     rel="noopener"
                 >
                     <svg
-                        width="20"
-                        height="20"
-                        class="inline-block w-5 h-5 mr-2 -mt-1"
+                        width="18"
+                        height="18"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -109,17 +97,15 @@ const featuredWriting = [
                     </svg>
                     LinkedIn
                 </a>
-                <span class="text-gray-400 text-[1.5rem]">•</span>
                 <a
                     href="https://github.com/timwillebrands"
-                    class={socialLinkClasses}
+                    class="social-link"
                     target="_blank"
                     rel="noopener"
                 >
                     <svg
-                        width="20"
-                        height="20"
-                        class="inline-block w-5 h-5 mr-2 -mt-1"
+                        width="18"
+                        height="18"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -131,17 +117,15 @@ const featuredWriting = [
                     </svg>
                     GitHub
                 </a>
-                <span class="text-gray-400 text-[1.5rem]">•</span>
                 <a
                     href="https://bsky.app/profile/tim0theus.bsky.social"
-                    class={socialLinkClasses}
+                    class="social-link"
                     target="_blank"
                     rel="noopener"
                 >
                     <svg
-                        width="20"
-                        height="20"
-                        class="inline-block w-5 h-5 mr-2 -mt-1"
+                        width="18"
+                        height="18"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
@@ -155,39 +139,38 @@ const featuredWriting = [
             </div>
 
             <!-- CTAs -->
-            <nav class="flex flex-wrap justify-center gap-5">
-                <a href="/work" class={ctaClasses}>View My Work</a>
-                <a href="/writing" class={ctaClasses}>Read My Writing</a>
+            <nav class="flex flex-wrap justify-center gap-4">
+                <a href="/work" class="cta cta-primary">View My Work</a>
+                <a href="/writing" class="cta cta-secondary">Read My Writing</a>
             </nav>
         </div>
 
         <!-- Featured Content -->
         <section
             aria-labelledby="featured-work"
-            class="grid grid-cols-1 gap-12 pt-12 md:grid-cols-2"
+            class="featured-section grid grid-cols-1 gap-12 md:grid-cols-2"
         >
             <div>
                 <h3
                     id="featured-work"
-                    class="mb-6! text-center text-[1.3rem] font-semibold opacity-70"
+                    class="featured-heading"
                 >
                     Selected Work
                 </h3>
-                <ul class="flex list-none flex-col gap-4 p-0">
+                <ul class="featured-list">
                     {
                         featuredWork.map((post) => (
                             <li>
                                 <a
                                     href={`/work/${post.id}/`}
-                                    class="block text-black no-underline transition-all duration-150 hover:opacity-60 group"
+                                    class="featured-link"
                                 >
-                                    {" "}
-                                    <div class="text-lg font-bold text-justify">
-                                        {post.data.title + " "}
-                                        <span class="font-light opacity-60">
-                                            → {post.data.summary}
-                                        </span>{" "}
-                                    </div>{" "}
+                                    <span class="featured-title">
+                                        {post.data.title}
+                                    </span>
+                                    <span class="featured-summary">
+                                        {post.data.summary}
+                                    </span>
                                 </a>
                             </li>
                         ))
@@ -197,25 +180,24 @@ const featuredWriting = [
             <div>
                 <h3
                     id="featured-writing"
-                    class="mb-6! text-center text-[1.3rem] font-semibold opacity-70"
+                    class="featured-heading"
                 >
                     Recent Thinking
                 </h3>
-                <ul class="flex list-none flex-col gap-4 p-0">
+                <ul class="featured-list">
                     {
                         featuredWriting.map((post) => (
                             <li>
                                 <a
                                     href={`/writing/${post.id}/`}
-                                    class="block text-black no-underline transition-all duration-150 hover:opacity-60 group"
+                                    class="featured-link"
                                 >
-                                    {" "}
-                                    <div class="text-lg font-bold text-justify">
-                                        {post.data.title + " "}
-                                        <span class="font-normal opacity-60">
-                                            → {post.data.summary}
-                                        </span>{" "}
-                                    </div>{" "}
+                                    <span class="featured-title">
+                                        {post.data.title}
+                                    </span>
+                                    <span class="featured-summary">
+                                        {post.data.summary}
+                                    </span>
                                 </a>
                             </li>
                         ))
@@ -227,3 +209,179 @@ const featuredWriting = [
         <Background startColor="#8af0e0" endColor="#c6dbff" />
     </div>
 </Minimal>
+
+<style>
+    .hero {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .hero-title {
+        letter-spacing: -0.03em;
+    }
+
+    .hero-role {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .hero-bio {
+        font-size: 1.1rem;
+        line-height: 1.75;
+        font-weight: 500;
+        color: var(--ink-soft);
+    }
+
+    /* Social links */
+    .social-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5em;
+        align-items: center;
+    }
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        padding: 0.5em 1em;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--ink);
+        text-decoration: none;
+        border-radius: 100px;
+        transition: background var(--transition), color var(--transition);
+    }
+
+    .social-link:hover {
+        background: rgba(15, 20, 25, 0.06);
+        text-decoration: none;
+    }
+
+    .social-link svg {
+        opacity: 0.7;
+        transition: opacity var(--transition);
+    }
+
+    .social-link:hover svg {
+        opacity: 1;
+    }
+
+    /* CTAs */
+    .cta {
+        display: inline-block;
+        padding: 0.75em 2em;
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        border-radius: 100px;
+        transition:
+            transform var(--transition),
+            box-shadow var(--transition),
+            background var(--transition),
+            color var(--transition);
+    }
+
+    .cta:hover {
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    .cta-primary {
+        background: var(--ink);
+        color: var(--surface);
+        box-shadow: var(--shadow-md);
+    }
+
+    .cta-primary:hover {
+        box-shadow: var(--shadow-hover);
+        color: var(--surface);
+    }
+
+    .cta-secondary {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--border-hover);
+    }
+
+    .cta-secondary:hover {
+        background: rgba(15, 20, 25, 0.04);
+        border-color: rgba(15, 20, 25, 0.25);
+    }
+
+    /* Featured sections */
+    .featured-section {
+        padding-top: 1em;
+    }
+
+    .featured-heading {
+        font-size: 0.85rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-muted);
+        margin-bottom: 1.25em !important;
+        text-align: center;
+    }
+
+    .featured-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .featured-link {
+        display: block;
+        padding: 0.85em 1.1em;
+        text-decoration: none;
+        border-radius: var(--radius);
+        transition: background var(--transition);
+    }
+
+    .featured-link:hover {
+        background: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+    }
+
+    .featured-title {
+        display: block;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--ink);
+        line-height: 1.4;
+    }
+
+    .featured-summary {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--ink-muted);
+        line-height: 1.5;
+        margin-top: 0.15em;
+    }
+
+    @media (max-width: 720px) {
+        .hero {
+            padding: 2em 1.5em;
+        }
+
+        .social-row {
+            gap: 0.25em;
+        }
+
+        .social-link {
+            padding: 0.4em 0.75em;
+            font-size: 0.9rem;
+        }
+    }
+</style>

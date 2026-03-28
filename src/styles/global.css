@@ -1,21 +1,23 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
 @import "tailwindcss";
 
 :root {
-    --accent: #000000;
-    --accent-dark: #000000;
-    --black: 0, 0, 0;
-    --gray: 110, 110, 110;
-    --gray-light: 230, 230, 230;
-    --gray-dark: 20, 20, 20;
-    --border-thick: 3px;
-    --border-radius: 14px;
+    --ink: #0f1419;
+    --ink-soft: #536471;
+    --ink-muted: #8b98a5;
+    --surface: #ffffff;
+    --surface-raised: #f7f9fa;
+    --border: rgba(15, 20, 25, 0.08);
+    --border-hover: rgba(15, 20, 25, 0.16);
+    --shadow-sm: 0 1px 2px rgba(15, 20, 25, 0.04);
+    --shadow-md: 0 4px 12px rgba(15, 20, 25, 0.06);
+    --shadow-lg: 0 8px 30px rgba(15, 20, 25, 0.08);
+    --shadow-hover: 0 8px 30px rgba(15, 20, 25, 0.12);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* Dosis font family (TTF available in /public/fonts). Consider adding WOFF2 later for optimal perf. */
+
+/* Dosis font family */
 @font-face {
     font-family: "Dosis";
     src: url("/fonts/Dosis-Regular.ttf") format("truetype");
@@ -44,6 +46,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 body {
     font-family:
         "Dosis",
@@ -57,19 +60,23 @@ body {
     margin: 0;
     padding: 0;
     text-align: left;
-    background: #ffffff;
+    background: var(--surface);
     word-wrap: break-word;
     overflow-wrap: break-word;
-    color: rgb(var(--black));
+    color: var(--ink);
     font-size: 20px;
     line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
 main {
     width: 1024px;
     max-width: calc(100% - 2em);
     margin: auto;
     padding: 3em 1em;
 }
+
 h1,
 h2,
 h3,
@@ -77,41 +84,57 @@ h4,
 h5,
 h6 {
     margin: 0 0 0.5rem 0;
-    color: rgb(var(--black));
+    color: var(--ink);
     line-height: 1.2;
+    letter-spacing: -0.01em;
 }
+
 h1 {
     font-size: 3.2em;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.02em;
+    font-weight: 700;
 }
+
 h2 {
     font-size: 2.2em;
 }
+
 h3 {
     font-size: 1.8em;
 }
+
 h4 {
     font-size: 1.4em;
 }
+
 h5 {
     font-size: 1.2em;
 }
+
 strong,
 b {
     font-weight: 700;
 }
+
 a {
-    color: rgb(var(--black));
-    text-decoration-thickness: 2px;
+    color: var(--ink);
+    text-decoration-thickness: 1px;
     text-underline-offset: 3px;
+    text-decoration-color: var(--ink-muted);
+    transition: text-decoration-color var(--transition), color var(--transition);
 }
+
 a:hover,
 a:focus-visible {
     text-decoration: underline;
+    text-decoration-color: var(--ink);
 }
+
 p {
     margin-bottom: 1em;
 }
+
+/* Prose (article content) */
 .prose {
     margin-top: 1em;
 }
@@ -131,11 +154,12 @@ p {
 
 .prose a {
     text-decoration: underline;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--ink-muted);
 }
 
 .prose a:hover {
-    text-decoration-thickness: 1px;
+    text-decoration-color: var(--ink);
 }
 
 .prose ul,
@@ -160,87 +184,117 @@ p {
     font-weight: 600;
 }
 
+/* Card grid */
 .card-grid {
     list-style: none;
     padding: 0;
     margin: 2em 0;
     display: grid;
-    gap: 1.5em;
+    gap: 1.25em;
 }
 
 .card {
-    border: var(--border-thick) solid rgb(var(--black));
-    border-radius: var(--border-radius);
-    padding: 1.5em;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75em 2em;
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0 rgb(var(--black));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
 }
 
 .card h2 {
     margin: 0 0 0.5em 0;
-    font-size: 1.6em;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.card h2 a {
+    text-decoration: none;
+}
+
+.card h2 a:hover {
+    text-decoration: none;
 }
 
 .card p {
     margin: 0;
-    color: rgb(var(--gray));
+    color: var(--ink-soft);
     line-height: 1.6;
+    font-size: 0.95em;
 }
 
+/* Article detail pages */
 .article-header {
     margin-bottom: 2em;
 }
 
 .article-meta {
-    color: rgb(var(--gray));
+    color: var(--ink-soft);
     margin-top: 0.5em;
     font-size: 0.95em;
 }
+
 textarea {
     width: 100%;
     font-size: 16px;
 }
+
 input {
     font-size: 16px;
 }
+
 table {
     width: 100%;
 }
+
 img {
     max-width: 100%;
     height: auto;
+    border-radius: var(--radius);
 }
+
 code {
-    padding: 2px 6px;
-    background-color: rgb(var(--gray-light));
-    border: var(--border-thick) solid rgb(var(--black));
-    border-radius: var(--border-radius);
+    padding: 2px 8px;
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9em;
 }
+
 pre {
     padding: 1.5em;
-    border: var(--border-thick) solid rgb(var(--black));
-    border-radius: var(--border-radius);
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-x: auto;
 }
+
 pre > code {
     all: unset;
 }
+
 blockquote {
-    border-left: var(--border-thick) solid rgb(var(--black));
-    padding: 0 0 0 20px;
-    margin: 0px;
-    font-size: 0.9em;
-    border-radius: var(--border-radius);
+    border-left: 3px solid var(--border-hover);
+    padding: 0.25em 0 0.25em 1.25em;
+    margin: 0;
+    font-size: 0.95em;
+    color: var(--ink-soft);
 }
+
 hr {
     border: none;
-    border-top: var(--border-thick) solid rgb(var(--black));
+    border-top: 1px solid var(--border);
 }
+
 @media (max-width: 720px) {
     body {
         font-size: 18px;
@@ -258,12 +312,8 @@ hr {
     height: 1px;
     width: 1px;
     overflow: hidden;
-    /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
     clip: rect(1px 1px 1px 1px);
-    /* maybe deprecated but we need to support legacy browsers */
     clip: rect(1px, 1px, 1px, 1px);
-    /* modern browsers, clip-path works inwards from each corner */
     clip-path: inset(50%);
-    /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
     white-space: nowrap;
 }
