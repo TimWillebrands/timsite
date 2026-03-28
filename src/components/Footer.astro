@@ -3,34 +3,38 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Tim Willebrands.
+	<span class="copyright">&copy; {today.getFullYear()} Tim Willebrands</span>
 	<div class="social-links">
-		<a href="#" target="_blank" rel="me noopener">LinkedIn</a>
-		<a href="#" target="_blank" rel="me noopener">GitHub</a>
-		<a href="#" target="_blank" rel="me noopener">Twitter</a>
-		<a href="mailto:hello@example.com">Email</a>
+		<a href="https://www.linkedin.com/in/tim-willebrands-191b12a2" target="_blank" rel="noopener">LinkedIn</a>
+		<a href="https://github.com/timwillebrands" target="_blank" rel="noopener">GitHub</a>
+		<a href="https://bsky.app/profile/tim0theus.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+		<a href="mailto:mail@timwillebrands.nl">Email</a>
 	</div>
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: #fff;
-		color: rgb(var(--black));
+		padding: 2.5em 1em 4em 1em;
+		color: var(--ink-muted);
 		text-align: center;
-		border-top: var(--border-thick) solid rgb(var(--black));
+		font-size: 0.9em;
+		border-top: 1px solid var(--border);
+	}
+	.copyright {
+		display: block;
+		margin-bottom: 0.75em;
 	}
 	.social-links {
 		display: flex;
 		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+		gap: 1.5em;
 	}
 	.social-links a {
 		text-decoration: none;
-		color: rgb(var(--black));
-		border-bottom: var(--border-thick) solid transparent;
+		color: var(--ink-muted);
+		transition: color var(--transition);
 	}
 	.social-links a:hover {
-		border-bottom-color: rgb(var(--black));
+		color: var(--ink);
+		text-decoration: none;
 	}
 </style>
